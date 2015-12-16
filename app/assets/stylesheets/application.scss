@@ -3,4 +3,11 @@
 @import "col-helpers";
 @import "nav";
 @import "events";
+@import "signin";
+@import "signup";
+
+body {
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
 

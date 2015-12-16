@@ -8,19 +8,30 @@
 </head>
 <body>
 
+
   <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
-    <a class="navbar-brand" href="#">Coder Ticket</a>
+    <a class="navbar-brand" href="/">Coder Ticket</a>
     <ul class="nav navbar-nav">
+
+    <% if signed_in? %>
       <li class="nav-item">
-        <a class="nav-link" href="#">Log In</a>
+        <%= link_to "Sign out", session_path, method: :delete, class: "nav-link" %>
+      </li>
+    <% else %>
+      <li class="nav-item">
+        <%= link_to "Sign in", signin_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Sign Up</a>
+        <%= link_to "Sign up", signup_path, class: "nav-link"  %>
       </li>
+    <% end %>
+
     </ul>
   </nav>  
 
-<%= yield %>
+  <div class="container">
+    <%= yield %>
+  </div>
 
 </body>
 </html>

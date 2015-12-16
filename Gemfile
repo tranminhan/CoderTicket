@@ -31,6 +31,8 @@ gem 'simple_form'
 gem 'quiet_assets'
 gem 'better_errors', group: :development
 gem 'font-awesome-rails'
+gem 'monban'
+gem 'monban-generators'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
