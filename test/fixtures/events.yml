@@ -17,3 +17,12 @@ two:
   extended_html_description: MyText
   category_id: 
   name: MyString
+
+three:
+  starts_at: 2015-12-15 01:01:28
+  ends_at: 2015-12-15 01:01:28
+  venue_id: 
+  hero_image_url: MyString
+  extended_html_description: MyText
+  category_id: 
+  name: MyString

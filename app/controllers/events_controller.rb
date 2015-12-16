@@ -1,6 +1,10 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.all
+    if params[:search]
+      @events = Event.where("extended_html_description like ?", "%#{params[:search]}%")
+    else 
+      @events = Event.upcoming
+    end
   end
 
   def show
