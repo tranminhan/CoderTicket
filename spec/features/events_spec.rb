@@ -20,7 +20,7 @@ RSpec.feature "Events", type: :feature do
   scenario 'Follow an event detail page' do
     visit root_path
     click_link 'event 1'
-    expect(page).to have_content 'event 1'
+    expect(page).to have_selector('h3', text: 'event 1')
   end
 
 end
