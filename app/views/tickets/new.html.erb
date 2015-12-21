@@ -1,42 +1,47 @@
-<div class="container tickets-buy">
-  <div class="row"> 
-    <h2> <%= @event.name %> </h2>
+<div class="container-fluid tickets-buy">
+  <div class="row tickets-header">
+    <div class="col-xs-12 col-md-11 col-md-offset-1">
+      <h3> <%= @event.name %> </h3>
+      <div class="pull-left">
+        <%= fa_icon 'map-marker' %>
+      </div>
+      <div class="venue-details">
+       <%= @event.venue.name %>
+       <br/>
+       <%= @event.venue.full_address %>
+      </div>
+
+      <div class="pull-left">
+        <%= fa_icon 'clock-o' %>
+      </div>
+      <div class="time-details"> 
+        <%= @event.starts_at.strftime('%A, %d %b %Y %l:%M %p') %> 
+      </div>
+    </div>
   </div>
-  <br><br>
 
   <%= form_for :ticket, url: event_tickets_path do |f| %>
-  <div class="row block-header"> 
-    <div class="col-sm-6 relative col-xs-8">
-      <h5 class="font-800 uppercase">Ticket Type</h5>
-    </div>
-    <div class="col-sm-3 text-right hidden-xs">
-      <h5 class="font-800 uppercase">Price</h5>
-    </div>
-    <div class="col-sm-3 text-right col-xs-4">
-      <h5 class="font-800 uppercase">Qty</h5>
-    </div>      
-  </div>
-  
-  <% @event.ticket_types.each do |type| %>
-    <div class="row"> 
-      <div class="col-sm-6 relative col-xs-8">
-        <%= type.name %>
-      </div>
-      <div class="col-sm-3 text-right hidden-xs">
-        <%= type.price %>
-      </div>
-      <div class="col-sm-3 text-right col-xs-4">
-        <%= f.select "#{type.id}", options_for_select({"0": 0, "1": 1, "2": 2, "3": 3}) %>
-      </div>
-    </div>
-  <% end %> 
-
-  <br>
-  <div class="row pull-right"> 
-    <div class="col-sm-3 text-right col-xs-4">
-      <%= f.submit "Submit", class: "btn btn-warning btn-large" %>
+  <div class="row">
+    <div class="col-md-11 col-md-offset-1">  
+      <table class="table">
+        <th> Ticket Type </th>
+        <th> Unit Price </th>
+        <th> Quantity </th>
+      
+        <% @event.ticket_types.each do |type| %>
+        <tr>
+          <td> <%= type.name %> </td>
+          <td> <%= number_to_currency(type.price, unit: 'VND ', precision: 0) %> </td>
+          <td> <%= select_tag('quantity', options_for_select(0..10)) %></td> 
+        </tr>
+        <% end %> 
+      </table>
     </div>
   </div>
-
+  <div class="row">
+    <div class="col-md-2 col-md-offset-5">
+      <%= f.submit "Buy", class: "btn btn-success btn-lg btn-block" %>
+    </div>
+  <div>
   <% end %> 
-</div>
+</div>  
