@@ -33,6 +33,7 @@ gem 'better_errors', group: :development
 gem 'font-awesome-rails'
 gem 'monban'
 gem 'monban-generators'
+gem 'font-kit-rails', '~> 1.2.0'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

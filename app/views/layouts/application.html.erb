@@ -10,7 +10,7 @@
 
 
   <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
-    <a class="navbar-brand" href="/">Coder Ticket</a>
+    <a class="navbar-brand" href="<%= root_path %>">Coder Ticket</a>
     <ul class="nav navbar-nav">
 
     <% if signed_in? %>
@@ -29,9 +29,7 @@
     </ul>
   </nav>  
 
-  <div class="container">
-    <%= yield %>
-  </div>
+  <%= yield %>
 
 </body>
 </html>
