@@ -3,6 +3,7 @@
 @import "col-helpers";
 @import "nav";
 @import "events";
+@import "tickets";
 @import "signin";
 @import "signup";
 
@@ -11,3 +12,9 @@ body {
   padding-bottom: 40px;
 }
 
+.font-800 {
+    font-weight: 800;
+}
+.uppercase {
+    text-transform: uppercase;
+}

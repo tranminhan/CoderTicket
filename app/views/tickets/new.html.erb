@@ -1,9 +1,40 @@
 <div class="container tickets-buy">
-  <h2> <%= @event.name %> </h2>
-  <ul>
-    <% @event.ticket_types.each do |type| %>
-      <li> <%= type.name %> </li>
-    <% end %> 
-  </ul>
-</div>  
+  <div class="row"> 
+    <h2> <%= @event.name %> </h2>
+  </div>
+  <br><br>
 
+  <div class="row block-header"> 
+    <div class="col-sm-6 relative col-xs-8">
+      <h5 class="font-800 uppercase">Ticket Type</h5>
+    </div>
+    <div class="col-sm-3 text-right hidden-xs">
+      <h5 class="font-800 uppercase">Price</h5>
+    </div>
+    <div class="col-sm-3 text-right col-xs-4">
+      <h5 class="font-800 uppercase">Qty</h5>
+    </div>      
+  </div>
+
+  <% @event.ticket_types.each do |type| %>
+    <div class="row"> 
+      <div class="col-sm-6 relative col-xs-8">
+        <%= type.name %>    
+      </div>
+      <div class="col-sm-3 text-right hidden-xs">
+        <%= type.price %>
+      </div>
+      <div class="col-sm-3 text-right col-xs-4">
+        <%= select_tag "count", options_for_select({"0": 0, "1": 1, "2": 2, "3": 3}) %>
+      </div>
+    </div>
+  <% end %> 
+
+  <br>
+  <div class="row pull-right"> 
+    <div class="col-sm-3 text-right col-xs-4">
+      <input type="button" class="btn btn-warning btn-large" value="Submit">
+    </div>
+  </div>
+
+</div>
