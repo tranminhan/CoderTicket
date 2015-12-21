@@ -32,7 +32,7 @@
         <tr>
           <td> <%= type.name %> </td>
           <td> <%= number_to_currency(type.price, unit: 'VND ', precision: 0) %> </td>
-          <td> <%= select_tag('quantity', options_for_select(0..10)) %></td> 
+          <td> <%= f.select type.id, options_for_select(0..10) %></td> 
         </tr>
         <% end %> 
       </table>

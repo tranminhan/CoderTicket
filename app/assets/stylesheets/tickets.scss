@@ -35,6 +35,11 @@
     td {
       border-top: 1px dashed rgb(178, 178, 178);
     }
+    tr.total-text {
+      color: rgb(51, 51, 51);
+      font-weight: 800;
+      text-transform: uppercase;      
+    }
     margin-top: 40px;
     margin-bottom: 80px;
   }
