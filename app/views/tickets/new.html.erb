@@ -4,6 +4,7 @@
   </div>
   <br><br>
 
+  <%= form_for :ticket, url: event_tickets_path do |f| %>
   <div class="row block-header"> 
     <div class="col-sm-6 relative col-xs-8">
       <h5 class="font-800 uppercase">Ticket Type</h5>
@@ -15,17 +16,17 @@
       <h5 class="font-800 uppercase">Qty</h5>
     </div>      
   </div>
-
+  
   <% @event.ticket_types.each do |type| %>
     <div class="row"> 
       <div class="col-sm-6 relative col-xs-8">
-        <%= type.name %>    
+        <%= type.name %>
       </div>
       <div class="col-sm-3 text-right hidden-xs">
         <%= type.price %>
       </div>
       <div class="col-sm-3 text-right col-xs-4">
-        <%= select_tag "count", options_for_select({"0": 0, "1": 1, "2": 2, "3": 3}) %>
+        <%= f.select "#{type.id}", options_for_select({"0": 0, "1": 1, "2": 2, "3": 3}) %>
       </div>
     </div>
   <% end %> 
@@ -33,8 +34,9 @@
   <br>
   <div class="row pull-right"> 
     <div class="col-sm-3 text-right col-xs-4">
-      <input type="button" class="btn btn-warning btn-large" value="Submit">
+      <%= f.submit "Submit", class: "btn btn-warning btn-large" %>
     </div>
   </div>
 
+  <% end %> 
 </div>
