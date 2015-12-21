@@ -23,4 +23,11 @@ RSpec.feature "Events", type: :feature do
     expect(page).to have_selector('h3', text: 'event 1')
   end
 
+  scenario 'Book now leads into another page to purchase tickets' do
+    visit event_path(@event1)
+    expect(page).to have_selector('h3', text: 'event 1')
+    click_link 'BOOK NOW'
+    expect(page).to have_selector '.tickets-buy'
+  end
+
 end

@@ -6,10 +6,7 @@ class EventsController < ApplicationController
       @events = Event.upcoming
     end
   end
-
-  def search
-  end
-
+  
   def show
     @event = Event.find(params[:id])
   end
