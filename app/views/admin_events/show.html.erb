@@ -1,0 +1,28 @@
+<div class="container-fluid tickets-buy">
+  <div class="row tickets-header">
+    <div class="col-xs-12 col-md-11 col-md-offset-1">
+      <center>
+        <h2><%= @event.name %></h2>
+        <%= link_to 'add ticket types', new_admin_event_admin_ticket_path(@event), class: 'btn btn-danger', role: 'button' %> 
+      </center>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-11 col-md-offset-1">  
+      
+      <table class="table">
+        <th> Ticket Type </th>
+        <th> Price </th>
+        <th> Quantity </th>
+
+        <% @event.ticket_types.each do |ticket_type| %>
+        <tr>
+          <td> <%= ticket_type.name %> </td>
+          <td> <%= vnd(ticket_type.price) %> </td>
+          <td> <%= ticket_type.max_quantity %> </td>
+        </tr>
+        <% end %>
+      </table>      
+    </div>
+  </div>
+</div>

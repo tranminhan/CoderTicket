@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li><%= link_to "My Events", admin_events_path %></li>
+        <li><%= link_to "Create Event", new_admin_event_path %></li>
+        <li><a href="#">Published</a></li>
+        <li><a href="#">Draft</a></li>
+      </ul>
+    </div>
+
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <% if @ticket_type.errors.any? %>
+        <div id="error_explanation">
+          Please review following <%= pluralize(@ticket_type.errors.count, "error") %>.
+          <ul>
+          <% @ticket_type.errors.full_messages.each do |m| %>
+            <li><%= m %></li>
+          <% end %>
+        </ul>
+        </div>
+      <% end %>
+
+      <h2>Create Ticket Type</h2>
+      <div class="table-responsive">
+        <%= form_for @ticket_type, url: admin_event_admin_tickets_path(@event) do |f| %>
+          <div class="form-group">
+            <%= f.text_field :name, class: "form-control", placeholder: "name"  %>
+          </div>
+          <div class="form-group">
+            <%= f.number_field :price, class: "form-control", placeholder: "price" %>
+          </div>
+          <div class="form-group">
+            <%= f.number_field :max_quantity, class: "form-control", placeholder: "max quantity" %>
+          </div>
+          <button type="submit" class="btn btn-default btn-warning">Submit</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

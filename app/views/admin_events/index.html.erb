@@ -25,7 +25,7 @@
           <% @events.each_with_index do |event, index| %>
           <tr>
             <td> <%= index %> </td>
-            <td> <%= event.name %> </td>
+            <td> <%= link_to event.name, admin_event_path(event) %> </td>
             <td> <%= event.starts_at %> </td>
             <td> <%= 'active' %> </td>
             <td> <%= vnd(100000) %> </td>

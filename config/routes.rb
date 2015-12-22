@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   get 'admin_events/new'
-
   get 'admin_events/create'
 
   resource :session, only: [:new, :create, :destroy]
@@ -19,7 +18,9 @@ Rails.application.routes.draw do
     resources :events
   end
 
-  resources :admin_events
+  resources :admin_events do
+    resources :admin_tickets
+  end 
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
