@@ -3,6 +3,10 @@ class TicketsController < ApplicationController
     @event = Event.find(params[:event_id])
   end
 
+  def show
+    @ticket = Ticket.find(params[:id])
+  end
+
   def create
     # debugger
     # { ticket[1] => 2, ticket[2] => 0 }
@@ -13,18 +17,24 @@ class TicketsController < ApplicationController
     #     qty
 
     # ticket = params[:ticket] 
-    # @tickets = 
-    # if Ticket.new(current_user).add_all(params['ticket']).save?
+    @ticket = Ticket.new(user: current_user)
     #   # show error
     # end 
     # redirect_to_thank_you page / ticket/1
-
-    ticket.each do |key, value| 
+    params[:ticket].each do |key, value| 
       if value.to_i > 0 
-        @tickets << { type: TicketType.find(key), qty: value }
+        @ticket.ticket_items << TicketItem.new(ticket_type: TicketType.find(key), ticket: @ticket, qty: value)
       end 
     end
-    @total = @tickets.inject(0){ |sum, e| sum += e[:type][:price].to_f }
+
+    # debugger
+    if @ticket.save
+      redirect_to ticket_path(@ticket)
+    else
+      render text: "Cannot process this purchase"
+    end 
+
+    # @total = @tickets.inject(0){ |sum, e| sum += e[:type][:price].to_f }
     # debugger
   end
 

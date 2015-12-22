@@ -10,4 +10,8 @@ class Event < ActiveRecord::Base
     where("starts_at > ?", DateTime.now)
   end 
 
+  def future?
+    starts_at > DateTime.now
+  end
+
 end

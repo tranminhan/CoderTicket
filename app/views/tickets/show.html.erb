@@ -1,0 +1,32 @@
+<div class="container-fluid tickets-buy">
+  <div class="row tickets-header">
+    <div class="col-xs-12 col-md-11 col-md-offset-1">
+      <center><h3>Thank you for your purchase!</h3></center>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-11 col-md-offset-1">  
+      <table class="table">
+        <th> Ticket Type </th>
+        <th> Price </th>
+        <th> Quantity </th>
+      
+        <% @ticket.ticket_items.each do |item| %>
+        <tr>
+          <td> <%= item.ticket_type.name %> </td>
+          <td> <%= vnd(item.ticket_type.price) %> </td>
+          <td> <%= item.qty %> </td>
+        </tr>
+        <% end %> 
+        <tr class="total-text">
+          <td></td>
+          <td> Total </td>
+          <td> <%= vnd(@ticket.total) %> </td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+
+</div>
+
