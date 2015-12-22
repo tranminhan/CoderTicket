@@ -158,3 +158,16 @@ e = Event.create({
   DESC
 })  
 e.ticket_types << TicketType.create(name: 'General', price: 99000, max_quantity: 1000)
+
+User.create(
+  name: "user", 
+  email: 'user@example.com', 
+  password_digest: BCrypt::Password.create('password', cost: BCrypt::Engine::MIN_COST)
+)    
+
+
+# User.create!(name: "Example User", 
+#              email: "example@railstutorial.org",
+#              password: "foorbar",
+#              password_confirmation: "foorbar",
+#              admin: true)
