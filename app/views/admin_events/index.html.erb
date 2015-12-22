@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li><%= link_to "My Events", admin_events_path %></li>
+        <li><%= link_to "Create Event", new_admin_event_path %></li>
+        <li><a href="#">Published</a></li>
+        <li><a href="#">Draft</a></li>
+      </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <h2>My Events</h2>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Start At</th>
+              <th>Status</th>
+              <th>Revenue</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @events.each_with_index do |event, index| %>
+          <tr>
+            <td> <%= index %> </td>
+            <td> <%= event.name %> </td>
+            <td> <%= event.starts_at %> </td>
+            <td> <%= 'active' %> </td>
+            <td> <%= vnd(100000) %> </td>
+          </tr>
+          <% end %> 
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

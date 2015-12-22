@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'admin_events/new'
+
+  get 'admin_events/create'
+
   resource :session, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create]
   root 'events#index'
@@ -14,6 +18,8 @@ Rails.application.routes.draw do
   resource :dashboard, only: [:show] do
     resources :events
   end
+
+  resources :admin_events
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
