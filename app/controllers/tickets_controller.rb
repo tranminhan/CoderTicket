@@ -5,8 +5,20 @@ class TicketsController < ApplicationController
 
   def create
     # debugger
-    ticket = params[:ticket]
-    @tickets = []
+    # { ticket[1] => 2, ticket[2] => 0 }
+
+    # Ticket
+    #   Ticket_item
+    #     ticket_type_id
+    #     qty
+
+    # ticket = params[:ticket] 
+    # @tickets = 
+    # if Ticket.new(current_user).add_all(params['ticket']).save?
+    #   # show error
+    # end 
+    # redirect_to_thank_you page / ticket/1
+
     ticket.each do |key, value| 
       if value.to_i > 0 
         @tickets << { type: TicketType.find(key), qty: value }
