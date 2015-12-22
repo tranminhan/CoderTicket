@@ -20,16 +20,17 @@ RSpec.describe Ticket, type: :model do
 
     it "can buy tickets" do
       @ticket = Ticket.new(user: @user)
-      @ticket.ticket_items << TicketItem.new(ticket_type: @ticket_type_1, ticket: @ticket, qty: 1)
-      @ticket.ticket_items << TicketItem.new(ticket_type: @ticket_type_2, ticket: @ticket, qty: 1)
+      @ticket.ticket_items << TicketItem.new(ticket_type: @ticket_type_1, qty: 1)
+      @ticket.ticket_items << TicketItem.new(ticket_type: @ticket_type_2, qty: 1)
 
-      expect(@ticket.valid?).to be(true)
+      expect(@ticket.save).to be(true)
+      expect(@ticket.ticket_items(true).count).to eq(2)
     end 
 
     it "cannot buy more tickets than the quantity available" do
       @ticket = Ticket.new(user: @user)
-      @ticket.ticket_items << TicketItem.new(ticket_type: @ticket_type_1, ticket: @ticket, qty: 1)
-      @ticket.ticket_items << TicketItem.new(ticket_type: @ticket_type_2, ticket: @ticket, qty: 3)
+      @ticket.ticket_items << TicketItem.new(ticket_type: @ticket_type_1, qty: 1)
+      @ticket.ticket_items << TicketItem.new(ticket_type: @ticket_type_2, qty: 3)
 
       expect(@ticket.valid?).to be(false)
       expect(@ticket.ticket_items[0].errors.messages).to be_empty
@@ -38,7 +39,7 @@ RSpec.describe Ticket, type: :model do
 
     it "cannot buy more than 10 tickets per type a time" do
       @ticket = Ticket.new(user: @user)
-      @ticket.ticket_items << TicketItem.new(ticket_type: @ticket_type_1, ticket: @ticket, qty: 12)
+      @ticket.ticket_items << TicketItem.new(ticket_type: @ticket_type_1, qty: 12)
 
       expect(@ticket.valid?).to be(false)
       expect(@ticket.ticket_items[0].errors.messages[:qty]).to eq(['cannot buy more than 10 tickets of this type a time'])
@@ -46,7 +47,7 @@ RSpec.describe Ticket, type: :model do
 
     it "cannot buy tickets to events that occur in the past" do
       @ticket = Ticket.new(user: @user)
-      @ticket.ticket_items << TicketItem.new(ticket_type: @ticket_type_3, ticket: @ticket, qty: 1)
+      @ticket.ticket_items << TicketItem.new(ticket_type: @ticket_type_3, qty: 1)
 
       expect(@ticket.valid?).to be(false)
       expect(@ticket.ticket_items[0].errors.messages[:qty]).to eq(['cannot buy tickets for past events'])
