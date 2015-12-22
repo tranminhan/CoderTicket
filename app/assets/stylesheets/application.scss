@@ -11,9 +11,11 @@
 @import "signin";
 @import "signup";
 @import "tickets";
+@import "dashboard";
 
 body {
   font-family: 'Open Sans';
+  padding-top: 50px;
 }
 
 .btn.btn-danger {
