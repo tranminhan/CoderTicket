@@ -1,0 +1,2 @@
+module AdminVenuesHelper
+end

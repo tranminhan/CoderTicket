@@ -4,26 +4,26 @@
       <%= render 'shared/admin_navbar' %>
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-      <h2>My Events</h2>
+      <h2>All Venues</h2>
+      <%= link_to 'New venue', new_admin_venue_path %>
+      
       <div class="table-responsive">
         <table class="table table-striped">
           <thead>
             <tr>
               <th>#</th>
               <th>Name</th>
-              <th>Start At</th>
-              <th>Status</th>
-              <th>Revenue</th>
+              <th>Address</th>
+              <th>Region</th>
             </tr>
           </thead>
           <tbody>
-          <% @events.each_with_index do |event, index| %>
+          <% @venues.each_with_index do |venue, index| %>
           <tr>
             <td> <%= index %> </td>
-            <td> <%= link_to event.name, admin_event_path(event) %> </td>
-            <td> <%= event.starts_at %> </td>
-            <td> <%= 'active' %> </td>
-            <td> <%= vnd(100000) %> </td>
+            <td> <%= venue.name %> </td>
+            <td> <%= venue.full_address %> </td>
+            <td> <%= venue.region.name %> </td>
           </tr>
           <% end %> 
           </tbody>

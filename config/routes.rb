@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'admin_venues/index'
+
+  get 'admin_venues/new'
+
   get 'admin_events/new'
   get 'admin_events/create'
 
@@ -21,6 +25,8 @@ Rails.application.routes.draw do
   resources :admin_events do
     resources :admin_tickets
   end 
+
+  resources :admin_venues
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
