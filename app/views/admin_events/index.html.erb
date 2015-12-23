@@ -22,8 +22,8 @@
             <td> <%= index %> </td>
             <td> <%= link_to event.name, admin_event_path(event) %> </td>
             <td> <%= event.starts_at %> </td>
-            <td> <%= 'active' %> </td>
-            <td> <%= vnd(100000) %> </td>
+            <td> <%= event.status %> </td>
+            <td> <%= vnd(0) %> </td>
           </tr>
           <% end %> 
           </tbody>

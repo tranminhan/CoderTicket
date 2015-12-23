@@ -4,6 +4,9 @@
       <center>
         <h2><%= @event.name %></h2>
         <%= link_to 'add ticket types', new_admin_event_admin_ticket_path(@event), class: 'btn btn-danger', role: 'button' %> 
+        <%= link_to 'publish', admin_event_path(@event), class: 'btn btn-danger', role: 'button' %> 
+        <%= link_to 'archive', admin_event_path(@event), class: 'btn btn-danger', role: 'button' %> 
+
       </center>
     </div>
   </div>

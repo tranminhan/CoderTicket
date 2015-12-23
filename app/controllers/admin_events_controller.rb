@@ -16,6 +16,14 @@ class AdminEventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def update
+    @event = Event.find(params[:id])
+    if params[:publish]
+      @event.publish
+    end 
+    redirect_to admin_events_path
+  end
+
   def index
     @events = Event.all
   end
