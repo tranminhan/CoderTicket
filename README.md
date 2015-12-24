@@ -56,9 +56,20 @@ The following **required** functionality is complete:
 * [ ] Events are automatically labeled as "Hot". "Hot" events should have a red border or some sort of visual flourish. The event title should also be prefixed with "**HOT:**".
 * [ ] Instead of showing all of the events on the main page, an "admin" user can dictate the events that show up on the main page.
 
+## Video Walkthrough 
+
+Here's a walkthrough of implemented user stories:
+
+![Video Walkthrough](http://i.imgur.com/R5Y4ZYV.gif)
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
 ## Notes
 
 Describe any challenges encountered while building the app.
+* I spent many hours on troubleshooting and figuring uniqueness issue (Region's name, Event's name) with FactoryGirl.
+* With no good understanding on basic Ruby (include, require statements), I was confused a lot when researching libraries configuration
+
 
 ## License
 
