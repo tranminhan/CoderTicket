@@ -6,15 +6,18 @@ Submitted by: **An Tran**
 
 Time spent: **20** hours
 
-URL: **Insert your Heroku URL here**
+URL: **https://lit-escarpment-4852.herokuapp.com**
 
-SimpleCov Test Coverage: **Insert percentage or link to report here**
+SimpleCov Test Coverage: **34.57%**
 
 ## User Stories
 
 The following **required** functionality is complete:
 
-* [ ] 10 model tests, 2 route tests, 2 controller tests, 2 view tests.
+* [x] 10 model tests.
+* [x] 2 route tests.
+* [x] 2 controller tests.
+* [x] 2 view tests.
 
 #### Events
 
