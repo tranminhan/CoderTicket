@@ -1,4 +1,6 @@
 class AdminEventsController < ApplicationController
+  before_action :author_check, only: [:edit, :update, :show]
+
   def new
     @event = Event.new
   end
@@ -54,5 +56,11 @@ class AdminEventsController < ApplicationController
     params.require(:event)
           .permit(:name, :extended_html_description, :starts_at, :venue_id, :category_id, :hero_image_url)
   end
+
+  def author_check
+    author = Event.find(params[:id]).user
+    flash[:error] = "You are not the admin of this event"
+    redirect_to admin_events_path unless current_user == author
+  end 
 
 end
