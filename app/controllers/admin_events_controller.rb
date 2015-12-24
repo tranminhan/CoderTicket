@@ -6,6 +6,7 @@ class AdminEventsController < ApplicationController
   def create
     @event = Event.create(event_params)
     @event.status = :Draft
+    @event.user = current_user
 
     if @event.save
       flash[:success] = "Create '#{@event.name}' successfully"
@@ -43,7 +44,8 @@ class AdminEventsController < ApplicationController
   end
 
   def index
-    @events = Event.all
+    # debugger
+    @events = Event.where("user_id = ?", current_user.id)
   end
 
   private 
