@@ -1,5 +1,6 @@
 <div class="container-fluid tickets-buy">
   <div class="row tickets-header">
+    
     <div class="col-xs-12 col-md-11 col-md-offset-1">
       <h3> <%= @event.name %> </h3>
       <div class="pull-left">
@@ -19,7 +20,8 @@
       </div>
     </div>
   </div>
-
+  
+  <%= flash_messages %>
   <%= form_for :ticket, url: event_tickets_path do |f| %>
   <div class="row">
     <div class="col-md-11 col-md-offset-1">  

@@ -5,7 +5,7 @@ class Ticket < ActiveRecord::Base
   validates_associated :ticket_items
 
   def total 
-    ticket_items.inject(0){ |sum, e| sum += e.ticket_type.price.to_f }
+    ticket_items.inject(0){ |sum, e| sum += (e.qty * e.ticket_type.price).to_f }
   end 
   
 end
