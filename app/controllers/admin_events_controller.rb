@@ -1,8 +1,14 @@
 class AdminEventsController < ApplicationController
+  before_action :require_login
   before_action :author_check, only: [:edit, :update, :show]
 
   def new
     @event = Event.new
+  end
+
+  def edit
+    @event = Event.find(params[:id])
+    render 'admin_events/edit'
   end
 
   def create
@@ -41,12 +47,20 @@ class AdminEventsController < ApplicationController
         render 'admin_events/show'
       end 
     else
-      render 'admin_events/show'
+      if @event.update(event_params)
+        flash[:success] = "Update '#{@event.name}' successfully"
+        redirect_to admin_event_path(@event)
+      else 
+        render 'admin_events/edit'
+      end 
     end
   end
 
   def index
-    # debugger
+    @events = Event.where("user_id = ?", current_user.id)
+  end
+
+  def index
     @events = Event.where("user_id = ?", current_user.id)
   end
 
@@ -59,8 +73,10 @@ class AdminEventsController < ApplicationController
 
   def author_check
     author = Event.find(params[:id]).user
-    flash[:error] = "You are not the admin of this event"
-    redirect_to admin_events_path unless current_user == author
+    unless current_user == author
+      flash[:error] = "You are not the admin of this event"
+      redirect_to admin_events_path 
+    end
   end 
 
 end

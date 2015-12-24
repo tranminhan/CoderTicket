@@ -1,4 +1,6 @@
 class AdminVenuesController < ApplicationController
+  before_action :require_login
+
   def index
     @venues = Venue.all
   end

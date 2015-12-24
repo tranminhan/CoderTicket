@@ -1,4 +1,5 @@
 class AdminTicketsController < ApplicationController
+  before_action :require_login
 
   def new
     @ticket_type = TicketType.new
