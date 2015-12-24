@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.feature "Events", type: :feature do
-  before do
-    region = Region.create(name: "Ho Chi Minh City")
-    category = Category.create(name: "Entertainment")
-    venue = Venue.create(name: "venue name", full_address: "venue addr", region: region)
-    @event1 = Event.create(name: "event 1", starts_at: 1.day.from_now,   venue: venue, category: category, extended_html_description: "desc - search text")
+  before (:each) do
+    venue = FactoryGirl.create(:venue)
+    category = FactoryGirl.create(:category)
+
+    @event1 = FactoryGirl.create(:event, name: 'event 1', starts_at: 2.days.from_now, venue: venue, category: category)
   end
 
   # Scenario: Visit the 'about' page

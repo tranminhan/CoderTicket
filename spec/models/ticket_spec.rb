@@ -2,18 +2,18 @@ require 'rails_helper'
 
 RSpec.describe Ticket, type: :model do
   describe "tickets validation" do
-    before do
-       region = FactoryGirl.create(:hcm)
-       category = FactoryGirl.create(:category)
-       venue = Venue.create(name: "venue name", full_address: "venue addr", region: region)
-       
+    before(:each) do
        @user = FactoryGirl.create(:user)
+       venue = FactoryGirl.create(:venue)
+       category = FactoryGirl.create(:category)
 
-       @event1 = Event.create(name: "event 1", starts_at: 1.day.from_now, venue: venue, category: category, extended_html_description: "desc")
+       # @event1 = FactoryGirl.create(:event, name: 'event test 1', starts_at: 1.day.from_now)
+       @event1 = Event.new(name: "event test 1", starts_at: 1.day.from_now, venue: venue, category: category, extended_html_description: "desc - search text", status: 'Published')
        @ticket_type_1 = TicketType.create(event: @event1, price: 100000, name: 'standard', max_quantity: 100)
        @ticket_type_2 = TicketType.create(event: @event1, price: 500000, name: 'vip',      max_quantity: 2)
        
-       @event_2 = Event.create(name: "event 2", starts_at: 1.day.ago, venue: venue, category: category, extended_html_description: "desc")
+       # @event_2 = FactoryGirl.create(:event, name: 'event test 2', starts_at: 1.day.ago)
+       @event_2 = Event.new(name: "event test 2", starts_at: 1.day.ago, venue: venue, category: category, extended_html_description: "desc - search text", status: 'Published')
        @ticket_type_3 = TicketType.create(event: @event_2, price: 100000, name: 'standard', max_quantity: 100)
        @ticket_type_4 = TicketType.create(event: @event_2, price: 500000, name: 'vip',      max_quantity: 2)
      end

@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "events/index", type: :view do
-  before do
+  before(:each) do
     region = Region.create(name: "Ho Chi Minh City")
     category = Category.create(name: "Entertainment")
     venue = Venue.create(name: "venue name", full_address: "venue addr", region: region)
-    @event1 = Event.create(name: "event 1", starts_at: 1.day.from_now,   venue: venue, category: category, extended_html_description: "desc - search text")
+    @event1 = Event.create(name: "event 1", starts_at: 1.day.from_now,   venue: venue, category: category, extended_html_description: "desc - search text", status: 'Published')
   end
 
   it "display the link to event detail page" do

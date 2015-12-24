@@ -18,7 +18,7 @@
 
       <h2>Create New Event</h2>
       <div class="table-responsive">
-        <%= form_for @event do |f| %>
+        <%= form_for @event, url: admin_events_path do |f| %>
           <div class="form-group">
             <%= f.text_field :name, class: "form-control", placeholder: "Event name"  %>
           </div>

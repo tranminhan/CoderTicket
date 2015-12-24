@@ -5,10 +5,13 @@ class AdminEventsController < ApplicationController
 
   def create
     @event = Event.create(event_params)
+    @event.status = :Draft
+
     if @event.save
-      redirect_to dashboard_path
+      flash[:success] = "Create '#{@event.name}' successfully"
+      redirect_to admin_events_path 
     else
-      render 'new'
+      render 'admin_events/new'
     end
   end
 
@@ -19,9 +22,24 @@ class AdminEventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if params[:publish]
-      @event.publish
-    end 
-    redirect_to admin_events_path
+      if @event.publish
+        flash[:success] = "Publish '#{@event.name}' successfully"
+        return redirect_to admin_events_path
+      else 
+        flash[:error] = @event.errors.full_messages[0]
+        render 'admin_events/show'
+      end 
+    elsif params[:archive]
+      if @event.archive
+        flash[:success] = "Archive '#{@event.name}' successfully"
+        return redirect_to admin_events_path
+      else 
+        flash[:error] = @event.errors.full_messages[0]
+        render 'admin_events/show'
+      end 
+    else
+      render 'admin_events/show'
+    end
   end
 
   def index
@@ -31,7 +49,8 @@ class AdminEventsController < ApplicationController
   private 
 
   def event_params
-    params.require(:event).permit(:name, :extended_html_description, :starts_at, :venue_id, :category_id, :hero_image_url)
+    params.require(:event)
+          .permit(:name, :extended_html_description, :starts_at, :venue_id, :category_id, :hero_image_url)
   end
 
 end
