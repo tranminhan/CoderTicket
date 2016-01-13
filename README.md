@@ -6,7 +6,7 @@ Submitted by: **An Tran**
 
 Time spent: **20** hours
 
-URL: **https://lit-escarpment-4852.herokuapp.com**
+URL: **https://lit-escarpment-4852-ticket.herokuapp.com/**
 
 SimpleCov Test Coverage: **34.57%**
 
